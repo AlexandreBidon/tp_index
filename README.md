@@ -3,7 +3,7 @@
 ## Présentation
 **Auteur** : Alexandre Bidon
 
-**Note** : Ce repo contient le code d'un TP du cours d'indexation web. Le sujet du TP est [disponible ici](https://github.com/AlexandreBidon/tp-index/blob/master/docs/TP2.pdf).
+**Note** : Ce repo contient le code d'un TP du cours d'indexation web. Le sujet du TP est [disponible ici](https://github.com/AlexandreBidon/tp_index/blob/master/docs/TP2.pdf).
 
 Ce repo présente une implémentation basique d'un index web.
 
