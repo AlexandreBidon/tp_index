@@ -9,7 +9,7 @@ class Index():
         ,import_data_path : str
         ,export_index_path : str
         ,timeout : int
-        ,export_stat_path = None
+        ,export_stat_path : str
         ,print_progress = False
         ) -> None:
         self.url_list = self.__import_data(data_path = import_data_path)
@@ -17,9 +17,10 @@ class Index():
         self.count_tokens = 0
         self.count_errors = 0
         self.index = {}
-        self.__tokenize_title(timeout = timeout, print_progress = print)
+        self.__tokenize_title(timeout = timeout, print_progress = print_progress)
 
         self.__export_index_data(folder_path=export_index_path)
+        self.__export_meta_data(folder_path=export_stat_path)
 
     def __tokenize_title(self, timeout : int, print_progress = False):
         for i in range(self.count_documents):
@@ -43,12 +44,11 @@ class Index():
                 self.count_errors += 1 
 
     def __import_data(self, data_path : str):
-        # TODO : import JSON
         file = open(data_path)
         return(json.load(file))
 
     def __export_index_data(self, folder_path : str):
-        with open("test.json", 'w+') as outfile:
+        with open(folder_path, 'w+') as outfile:
             for token in self.index:
                 outfile.write(f'"{token}" : ')
                 for url in set(self.index[token]):
@@ -58,3 +58,12 @@ class Index():
 
     def __str__(self):
         return f"--- STATISTIQUES ---\nNombre de documents : {self.count_documents}\nNombre d'erreurs lors de l'indexage : {self.count_errors}\nNombre de tokens : {self.count_tokens}"
+
+    def __export_meta_data(self, folder_path : str):
+        with open(folder_path, 'w+') as outfile:
+            metadata = {"Nombre de sites indexes" : self.count_documents
+            ,"Nombre de tokens totaux" : self.count_tokens
+            ,"Nombre de tokens distincts" : len(self.index.keys())
+            ,"Nombre d\'erreurs lors de l\'indexation" : self.count_errors}
+            json.dump(metadata,outfile)
+            outfile.close()

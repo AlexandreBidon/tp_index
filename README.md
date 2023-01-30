@@ -13,6 +13,17 @@ Pour commencer il faut installer les dépendances du projet :
 
 > pip install -r requirements.txt
 
-Le fichier main.py contient une démo de l'index. 
+Il est ensuite possible d'utiliser le crawler avec la commande suivante :
+
+> python3 main.py
+
+Il est possible d'ajouter les arguments suivants à la commande :
+
+- '--import_data_path' : pour modifier le fichier contenant les urls à indexer
+- '--export_index_path' : pour modifier le chemin du fichier d'export de l'index
+- '--export_stat_path' : pour modifier le chemin des métadonnées
+- '--print_progress' : pour afficher le détail de l'indexation
 
 ## Fonctionnement
+
+TODO
